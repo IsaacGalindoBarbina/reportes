@@ -39,7 +39,9 @@ self.addEventListener('activate', (e)=>{
 //     e.respondWith(fetch('img/sakir.jpg'));
 //     else e.respondWith(fetch(e.request));
 // })
-self.addEventListener('fetch', (e) =>{
+
+//metodos
+//self.addEventListener('fetch', (e) =>{
     //1. Cache only -- solo hace un fetch al inicio y lo demas desde el cache
     //e.respondWith(caches.match(e.request));
     //2. cache with network fallback  -- si el recurso no esta en el cache va a la red
@@ -53,6 +55,7 @@ self.addEventListener('fetch', (e) =>{
     //     }); 
     // });
     // e.respondWith(source);
+    
     //3. network with cache fallback  -- siempre va a estar actualizada y si no hay va al cache
     // const source = fetch(e.request).then(res=>{
     //     if(!res) throw Error('NotFound');
@@ -98,7 +101,7 @@ self.addEventListener('fetch', (e) =>{
     //         .catch(failsOnce);
     //         caches.match(e.request).then()
     // })
-});
+//});
 
 // self.addEventListener('push', e => {
 //     console.log('notificacion push');
@@ -107,3 +110,38 @@ self.addEventListener('fetch', (e) =>{
 // self.addEventListener('sync', e => {
 //     console.log('SYNC EVENT');
 // });
+
+// self.addEventListener('fetch', (event) => {
+//     event.respondWith(
+//       fetch(event.request)
+//         .then((response) => {
+//           if (!response) {
+//             throw new Error('NotFound');
+//           }
+//           return caches.open(DYNAMIC)
+//             .then((cache) => {
+//               cache.put(event.request, response.clone());
+//               return response;
+//             });
+//         })
+//         .catch((error) => {
+//           return caches.match(event.request)
+//             .then((cachedResponse) => {
+//               if (cachedResponse) {
+//                 return cachedResponse;
+//               } else {
+//                 return caches.match('offline.html');
+//               }
+//             });
+//         })
+//     );
+//   });
+
+
+  
+
+  
+
+  
+
+  
