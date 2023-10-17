@@ -10,6 +10,7 @@ const APP_SHELL = [
     '/index.html',
     'css/style.css',
     'img/f1.jpg',
+    'pages/offline.html',
     'js/app.js'
 ]
 
@@ -80,6 +81,27 @@ self.addEventListener('activate', (e)=>{
     //     return cache.match(e.request);
     // });
     // e.respondWith(source);
+    // if(e.request.url.includes('page2.html')){
+    //     e.respondWith(
+    //         fetch(e.request).catch(()=>{
+    //             return caches.match('/pages/offline.html');
+    //         })
+    //     );
+    //     return;
+    // }
+    // e.respondWith(
+    //     fetch(e.request).then(res => {
+    //         if (!res || !res.ok) throw ('No encontrado');
+    //         const resClone = res.clone();
+    //         caches.open(DYNAMIC).then(cache => {
+    //             cache.put(e.request, resClone);
+    //         });
+    //         return res;
+    //     }).catch(err => {
+    //         console.warn('error:', err);
+    //         return caches.match(e.request);
+    //     })
+    // )
     //5. cache and network race
     // const source = new Promise((resolve, reject)=>{
     //     let rejected = false;
@@ -111,37 +133,16 @@ self.addEventListener('activate', (e)=>{
 //     console.log('SYNC EVENT');
 // });
 
-// self.addEventListener('fetch', (event) => {
-//     event.respondWith(
-//       fetch(event.request)
-//         .then((response) => {
-//           if (!response) {
-//             throw new Error('NotFound');
-//           }
-//           return caches.open(DYNAMIC)
-//             .then((cache) => {
-//               cache.put(event.request, response.clone());
-//               return response;
-//             });
-//         })
-//         .catch((error) => {
-//           return caches.match(event.request)
-//             .then((cachedResponse) => {
-//               if (cachedResponse) {
-//                 return cachedResponse;
-//               } else {
-//                 return caches.match('offline.html');
-//               }
-//             });
-//         })
-//     );
-//   });
 
 
-  
+self.addEventListener('fetch', (e) => {
+    e.respondWith(
+        fetch(e.request).catch(() => {
+            return caches.match('/pages/offline.html');
+        })
+    );
+});
 
-  
 
-  
 
   
