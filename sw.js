@@ -103,27 +103,25 @@ self.addEventListener('activate', (e)=>{
     //     })
     // )
     //5. cache and network race
-    // const source = new Promise((resolve, reject)=>{
-    //     let rejected = false;
-    //     const failsOnce = () => {
-    //         if(rejected){
-    //             if(/\.(png|jpg))/i.test(e.request.url)){
-    //                 resolve(caches.match('./img/not-found.png'));
-    //             }else{
-    //                 throw Error('SourceNotFound');
-    //             }
-    //         }else{
-    //             rejected = true;
-    //         }
-    //     };
-    //     fetch(e.request)
-    //         .then((res) => {
-    //             res.ok ? resolve(res) : fallback();
-    //         })
-    //         .catch(failsOnce);
-    //         caches.match(e.request).then()
-    // })
-//});
+//     const source = new Promise((resolve, reject)=>{
+//         let rejected = false;
+//         const failsOnce = () => {
+//             if(rejected){
+//                 if(/\.(png|jpg))/i.test(e.request.url)){
+//                     resolve(caches.match('./img/not-found.png'));
+//                 }if(e.request.url.includes)
+//             }else{
+//                 rejected = true;
+//             }
+//         };
+//         fetch(e.request)
+//             .then((res) => {
+//                 res.ok ? resolve(res) : fallback();
+//             })
+//             .catch(failsOnce);
+//             caches.match(e.request).then()
+//     })
+// });
 
 // self.addEventListener('push', e => {
 //     console.log('notificacion push');
@@ -142,6 +140,7 @@ self.addEventListener('fetch', (e) => {
         })
     );
 });
+
 
 
 
